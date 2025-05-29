@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>DB 연결 테스트</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>DB 연결 테스트</h1>
+<form id="db-form">
+    <input name="host" placeholder="호스트 (예: localhost)" required />
+    <input name="port" placeholder="포트 (예: 3306)" required />
+    <input name="user" placeholder="사용자명" required />
+    <input name="password" placeholder="비밀번호" type="password" required />
+    <input name="database" placeholder="데이터베이스 이름" required />
+    <button type="submit">연결 테스트</button>
+</form>
+<div id="result"></div>
+
+<script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Libre+Caslon+Display&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/fonts.css">
+    <link rel="icon" type="images/svg" href="/logo.svg">
+    <title>DB viewer</title>
+    <style>
+        .italiana-regular {
+            font-family: "Italiana", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .libre-caslon-display-regular {
+            font-family: "Libre Caslon Display", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html{
+            width: 100vw;
+            height: 200vh;
+            overflow-x: hidden;
+        }
+        header{
+            height: 10vh;
+            background-color: white;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #header {
+            width: 90%;
+            max-width: 1440px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo{
+            position: relative;
+            margin: 20px 0 20px -50px; /* 위 20px, 오른쪽 0, 아래 20px, 왼쪽 0 */
+        }
+        .logo img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: block;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            font-size: 1.5em;
+            justify-content: flex-end;
+            flex: 1;
+        }
+
+        body{
+            position: relative;
+            background-color: white;
+
+        }
+        .banner{
+            position: relative;
+            background-image: linear-gradient(to top right, #ffc2fb, #f6e6f6);
+            width: 100%;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;   /* 가로 가운데 */
+            text-align: center; /* 텍스트도 가운데 정렬 */
+            font-size: 4em;
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite;
+            .button{
+                display: flex;
+                position: relative;
+                width: 42vw;
+                border-radius: 100px;
+                cursor: pointer;
+                font-size: 0.7em;
+                min-height: 10vh;
+                justify-content: center; /* 세로 가운데 */
+            }
+        }
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .pointer{
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<header>
+<div id="header">
+    <div class="logo pointer">
+        <img src="logo.svg" alt="DB Viewer Logo">
+    </div>
+    <nav class="nav-menu italiana-regular">
+        <span class="pointer" style="padding: 8px">Home</span>
+        <span class="pointer" style="padding: 8px">Price</span>
+        <span class="pointer" style="padding: 8px">Sign in</span>
+        <span class="pointer" style="padding: 8px">Sign up</span>
+    </nav>
+</div>
+</header>
+
+<body>
+    <div class="banner do-hyeon-regular">
+        <div style="position: relative; top: 12vh">
+            <span>DB를 쉽고 간단하게 조회하고</span>
+            <br>
+            <span>원하는 정보를 간편하게 관리하세요</span>
+        </div>
+        <div onclick="window.location.href = '/viewer'" class="button do-hyeon-regular" style="background-color: #ffffff; top: 20vh; box-shadow: 4px 4px 4px black">Start without Sign in</div>
+        <div class="button do-hyeon-regular" style="background-color: #ffffff; top: 25vh; box-shadow: 4px 4px 4px black">Start Education Version</div>
+    </div>
+</body>
+<footer>
+
+</footer>
+
+</html>
