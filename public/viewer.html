@@ -1,138 +1,122 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="ko">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8" />-->
+<!--  <meta charset="UTF-8">-->
+<!--  <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">-->
+
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
+<!--  <link rel="stylesheet" href="viewer.css">-->
+<!--  <title>DB 연결 테스트</title>-->
+<!--</head>-->
+
+<!--<header>-->
+<!--  <div id="header">-->
+<!--    <div class="logo">-->
+<!--      <img src="logo.svg" alt="DB Viewer Logo">-->
+<!--    </div>-->
+<!--    <nav class="nav-menu italiana-regular">-->
+<!--      <span class="italiana-regular">Home</span>-->
+<!--      <span>Price</span>-->
+<!--      <span>Sign in</span>-->
+<!--      <span>Sign up</span>-->
+<!--    </nav>-->
+<!--  </div>-->
+<!--</header>-->
+
+<!--<body>-->
+<!--<div class="tabs">-->
+<!--  <button class="tab-button active" onclick="openTab(event, 'connect')">DB 연결</button>-->
+<!--  <button class="tab-button" onclick="openTab(event, 'tables')">테이블 목록</button>-->
+<!--  <button class="tab-button" onclick="openTab(event, 'data')">테이블 데이터</button>-->
+<!--  <button class="tab-button" onclick="openTab(event, 'ai-bot')">AI 챗봇</button>-->
+<!--</div>-->
+
+<!--<form id="connect" class="tab-content active">-->
+<!--  <input name="host" type="text" id="host" placeholder="호스트 (예: localhost)" value=""/>-->
+<!--  <input name="port" type="text" id="port" placeholder="포트 (예: 3306)" value=""/>-->
+<!--  <input name="user" type="text" id="user" placeholder="사용자명" value=""/>-->
+<!--  <input name="password" type="password" id="password" placeholder="비밀번호"/>-->
+<!--  <input name="database" type="text" id="database" placeholder="데이터베이스 이름" value=""/>-->
+<!--  <button type="submit" onclick="testConnection()">연결 테스트</button>-->
+<!--  <div class="message" id="connection-message"></div>-->
+<!--</form>-->
+
+<!--<div id="tables" class="tab-content">-->
+<!--  <p>📦 테이블 목록:</p>-->
+<!--  <ul id="table-list">-->
+<!--    <li><a href="#" onclick="showTableData('user_acount')">user_acount</a></li>-->
+<!--  </ul>-->
+<!--</div>-->
+
+<!--<div id="data" class="tab-content">-->
+<!--  <h3>user_acount 테이블 데이터</h3>-->
+<!--  <table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th>id</th>-->
+<!--      <th>username</th>-->
+<!--      <th>email</th>-->
+<!--      <th>password</th>-->
+<!--      <th>created_at</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr>-->
+<!--      <td>1</td>-->
+<!--      <td>coldbright</td>-->
+<!--      <td>iamgeniusshaba@naver.com</td>-->
+<!--      <td>••••••••</td>-->
+<!--      <td>2025-04-21T03:06:49.000Z</td>-->
+<!--    </tr>-->
+<!--    &lt;!&ndash; 실제 데이터가 여기에 동적으로 들어올 수 있습니다 &ndash;&gt;-->
+<!--    </tbody>-->
+<!--  </table>-->
+<!--</div>-->
+
+<!--<div id="ai-bot" class="tab-content">-->
+<!--  아 씨이발 ㅈ됫다-->
+<!--  이거 어케 구현하냐 답 없네-->
+<!--</div>-->
+
+<!--<script>-->
+<!--  function openTab(evt, tabId) {-->
+<!--    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));-->
+<!--    document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));-->
+<!--    document.getElementById(tabId).classList.add('active');-->
+<!--    evt.target.classList.add('active');-->
+<!--  }-->
+
+<!--  // function testConnection() {-->
+<!--  //   const message = document.getElementById("connection-message");-->
+<!--  //   // 실제로는 백엔드와 연동해야 합니다.-->
+<!--  //   message.innerHTML = "✅ 연결에 성공했습니다!";-->
+<!--  // }-->
+
+<!--  function showTableData(tableName) {-->
+<!--    // 이 예제에서는 user_acount 고정이므로 바로 해당 탭 열기-->
+<!--    const dataTab = document.querySelector('.tab-button:nth-child(3)');-->
+<!--    dataTab.click(); // "테이블 데이터" 탭 열기-->
+<!--  }-->
+<!--</script>-->
+<!--<script src="index.js"></script>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
   <meta charset="UTF-8">
+  <title>DB 연결 테스트</title>
+  <link rel="stylesheet" href="viewer.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DB 연결 테스트</title>
-  <style>
-    .italiana-regular {
-      font-family: "Italiana", sans-serif;
-      font-weight: 400;
-      font-style: normal;
-    }
-    .libre-caslon-display-regular {
-      font-family: "Libre Caslon Display", serif;
-      font-weight: 400;
-      font-style: normal;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html{
-      width: 100vw;
-      /*height: 200vh;*/
-      overflow-x: hidden;
-    }
-    header{
-      height: 10vh;
-      background-color: white;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    #header {
-      width: 90%;
-      max-width: 1440px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo{
-      position: relative;
-      margin: 20px 0 20px -60px; /* 위 20px, 오른쪽 0, 아래 20px, 왼쪽 0 */
-    }
-    .logo img{
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: block;
-    }
-    .nav-menu {
-      display: flex;
-      gap: 40px;
-      font-size: 1.5em;
-      justify-content: flex-end;
-      flex: 1;
-    }
-
-    body{
-      position: relative;
-      background-image: linear-gradient(to top right, #fff1f1, #ffefef);
-    }
-    .tabs {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-      margin-left: 2.1vw;
-    }
-    .tab-button {
-      padding: 10px 20px;
-      border: none;
-      background-color: #ddd;
-      cursor: pointer;
-      border-radius: 6px 6px 0 0;
-      opacity: 70%;
-    }
-    .tab-button.active {
-      background-color: #007bff;
-      color: white;
-      opacity: 100%;
-    }
-    .tab-content {
-      display: none;
-      background: white;
-      padding: 1.4vw;
-      border: 1px solid #ddd;
-      border-top: none;
-      border-radius: 0 0 8px 8px;
-      margin-left: 2vw;
-      width: 96vw;
-    }
-    .tab-content.active {
-      display: block;
-    }
-    input, select {
-      display: block;
-      margin-bottom: 10px;
-      padding: 8px;
-      width: 100%;
-      max-width: 300px;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-    table, th, td {
-      border: 1px solid #aaa;
-    }
-    th, td {
-      padding: 8px;
-      text-align: left;
-    }
-    .message {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<body>
 
 <header>
   <div id="header">
@@ -140,7 +124,7 @@
       <img src="logo.svg" alt="DB Viewer Logo">
     </div>
     <nav class="nav-menu italiana-regular">
-      <span class="italiana-regular">Home</span>
+      <span>Home</span>
       <span>Price</span>
       <span>Sign in</span>
       <span>Sign up</span>
@@ -148,7 +132,6 @@
   </div>
 </header>
 
-<body>
 <div class="tabs">
   <button class="tab-button active" onclick="openTab(event, 'connect')">DB 연결</button>
   <button class="tab-button" onclick="openTab(event, 'tables')">테이블 목록</button>
@@ -156,53 +139,32 @@
   <button class="tab-button" onclick="openTab(event, 'ai-bot')">AI 챗봇</button>
 </div>
 
-<div id="connect" class="tab-content active">
-  <input type="text" id="host" placeholder="호스트 (예: localhost)" value=""/>
-  <input type="text" id="port" placeholder="포트 (예: 3306)" value=""/>
-  <input type="text" id="user" placeholder="사용자명" value=""/>
-  <input type="password" id="password" placeholder="비밀번호"/>
-  <input type="text" id="database" placeholder="데이터베이스 이름" value=""/>
-  <button onclick="testConnection()">연결 테스트</button>
+<form id="connect" class="tab-content active">
+  <input name="host" type="text" id="host" placeholder="호스트 (예: localhost)" required />
+  <input name="port" type="text" id="port" placeholder="포트 (예: 3306)" required />
+  <input name="user" type="text" id="user" placeholder="사용자명" required />
+  <input name="password" type="password" id="password" placeholder="비밀번호" required />
+  <input name="database" type="text" id="database" placeholder="데이터베이스 이름" required />
+  <button type="submit">연결 테스트</button>
   <div class="message" id="connection-message"></div>
-</div>
+</form>
 
 <div id="tables" class="tab-content">
   <p>📦 테이블 목록:</p>
-  <ul id="table-list">
-    <li><a href="#" onclick="showTableData('user_acount')">user_acount</a></li>
-  </ul>
+  <ul id="table-list"></ul>
 </div>
 
 <div id="data" class="tab-content">
-  <h3>user_acount 테이블 데이터</h3>
-  <table>
-    <thead>
-    <tr>
-      <th>id</th>
-      <th>username</th>
-      <th>email</th>
-      <th>password</th>
-      <th>created_at</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>1</td>
-      <td>coldbright</td>
-      <td>iamgeniusshaba@naver.com</td>
-      <td>••••••••</td>
-      <td>2025-04-21T03:06:49.000Z</td>
-    </tr>
-    <!-- 실제 데이터가 여기에 동적으로 들어올 수 있습니다 -->
-    </tbody>
-  </table>
+  <h3 id="table-name"></h3>
+  <div id="table-data"></div>
 </div>
 
 <div id="ai-bot" class="tab-content">
-  아 씨이발 ㅈ됫다
+  <p>이곳은 AI 챗봇 영역입니다. GPT를 활용한 다양한 대화를 구현할 수 있어요!</p>
 </div>
 
 <script>
+  // 탭 전환 기능
   function openTab(evt, tabId) {
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
@@ -210,16 +172,81 @@
     evt.target.classList.add('active');
   }
 
-  function testConnection() {
-    const message = document.getElementById("connection-message");
-    // 실제로는 백엔드와 연동해야 합니다.
-    message.innerHTML = "✅ 연결에 성공했습니다!";
-  }
+  // DB 연결 및 테이블 조회 기능
+  let lastConnectionInfo = null;
+  document.getElementById("connect").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  function showTableData(tableName) {
-    // 이 예제에서는 user_acount 고정이므로 바로 해당 탭 열기
-    const dataTab = document.querySelector('.tab-button:nth-child(3)');
-    dataTab.click(); // "테이블 데이터" 탭 열기
+    const data = {
+      host: document.getElementById("host").value,
+      port: document.getElementById("port").value,
+      user: document.getElementById("user").value,
+      password: document.getElementById("password").value,
+      database: document.getElementById("database").value
+    };
+    lastConnectionInfo = data;
+
+    const res = await fetch("/api/db/test-connection", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type: "mysql", ...data }),
+    });
+
+    const json = await res.json();
+    const msgEl = document.getElementById("connection-message");
+    const tableList = document.getElementById("table-list");
+    tableList.innerHTML = "";
+
+    if (json.success) {
+      msgEl.innerHTML = `<p>✅ 연결에 성공했습니다!</p>`;
+      if (json.tables && json.tables.length > 0) {
+        json.tables.forEach(table => {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = "#";
+          a.textContent = table;
+          a.addEventListener("click", () => showTableData(table));
+          li.appendChild(a);
+          tableList.appendChild(li);
+        });
+        openTab({ target: document.querySelector('.tab-button:nth-child(2)') }, 'tables');
+      } else {
+        tableList.innerHTML = "<li>📂 테이블이 없습니다.</li>";
+      }
+    } else {
+      msgEl.innerHTML = `❌ 실패: ${json.message}`;
+    }
+  });
+
+  async function showTableData(tableName) {
+    const res = await fetch("/api/db/get-table-data", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...lastConnectionInfo, table: tableName }),
+    });
+
+    const json = await res.json();
+    const tableData = document.getElementById("table-data");
+    const tableTitle = document.getElementById("table-name");
+
+    if (json.success) {
+      tableTitle.textContent = `${tableName} 테이블 데이터`;
+      if (json.data.length > 0) {
+        const headers = Object.keys(json.data[0]);
+        const rows = json.data.map(row => `<tr>${Object.values(row).map(val => `<td>${val}</td>`).join("")}</tr>`).join("");
+
+        tableData.innerHTML = `
+          <table border="1">
+            <thead><tr>${headers.map(h => `<th>${h}</th>`).join("")}</tr></thead>
+            <tbody>${rows}</tbody>
+          </table>`;
+      } else {
+        tableData.innerHTML = "<p>📂 데이터가 없습니다.</p>";
+      }
+      openTab({ target: document.querySelector('.tab-button:nth-child(3)') }, 'data');
+    } else {
+      tableData.innerHTML = `<p>❌ 테이블 데이터 조회 실패: ${json.message}</p>`;
+    }
   }
 </script>
 
