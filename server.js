@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const mysql = require("mysql2/promise");
+require("dotenv").config(); // 꼭 상단에 있어야 함
 
 const app = express();
 
@@ -50,6 +51,41 @@ app.post("/api/db/get-table-data", async (req, res) => {
         res.status(500).json({ success: false, message: error.message });
     }
 });
+
+// 📁 server.js 또는 app.js
+const { Configuration, OpenAIApi } = require("openai");
+
+app.post("/api/ask-ai", async (req, res) => {
+    const { tableSchema, question } = req.body;
+
+    const configuration = new Configuration({
+        apiKey: process.env.OPENAI_API_KEY, // 노출 방지!
+    });
+    const openai = new OpenAIApi(configuration);
+
+    try {
+        const prompt = `
+당신은 SQL 전문가입니다. 아래는 데이터베이스 테이블 구조입니다:
+
+${tableSchema}
+
+질문: ${question}
+
+이 질문에 대해 적절한 MySQL 쿼리를 생성하기만 하시오. 다른 어떤 사족도 붙이지 말고 오직 코드만 첨부하시오.
+`;
+
+        const completion = await openai.createChatCompletion({
+            model: "gpt-4.1-nano",
+            messages: [{ role: "user", content: prompt }],
+        });
+
+        const answer = completion.data.choices[0].message.content;
+        res.json({ success: true, answer });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+});
+
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

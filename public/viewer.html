@@ -53,7 +53,10 @@
 </div>
 
 <div id="ai-bot" class="tab-content">
-  <p>이곳은 AI 챗봇 영역입니다. GPT를 활용한 다양한 대화를 구현할 수 있어요!</p>
+  <p>AI 챗봇과 대화해보세요!</p>
+  <textarea id="ai-question" placeholder="예: 지난 주 가장 많이 주문한 상품은?"></textarea>
+  <button onclick="askAI()">AI에게 묻기</button>
+  <div id="ai-answer"></div>
 </div>
 
 <script>
@@ -114,8 +117,8 @@
   async function showTableData(tableName) {
     const res = await fetch("/api/db/get-table-data", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...lastConnectionInfo, table: tableName }),
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({...lastConnectionInfo, table: tableName}),
     });
 
     const json = await res.json();
@@ -136,12 +139,41 @@
       } else {
         tableData.innerHTML = "<p>📂 데이터가 없습니다.</p>";
       }
-      openTab({ target: document.querySelector('.tab-button:nth-child(3)') }, 'data');
+      openTab({target: document.querySelector('.tab-button:nth-child(3)')}, 'data');
     } else {
       tableData.innerHTML = `<p>❌ 테이블 데이터 조회 실패: ${json.message}</p>`;
     }
   }
+
+  async function askAI() {
+    const question = document.getElementById("ai-question").value;
+    const aiAnswerEl = document.getElementById("ai-answer");
+
+    // 테이블 구조 예시 가져오기
+    const tables = document.querySelectorAll("#table-list li a");
+    if (!tables.length) {
+      aiAnswerEl.innerHTML = "❌ 먼저 데이터베이스를 연결해주세요.";
+      return;
+    }
+
+    // 테이블 구조 텍스트 생성 (간단하게 테이블 이름만)
+    const schemaText = Array.from(tables).map(t => t.textContent).join(", ");
+
+    const res = await fetch("/api/ask-ai", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tableSchema: schemaText, question }),
+    });
+
+    const json = await res.json();
+    if (json.success) {
+      aiAnswerEl.innerHTML = `<pre>${json.answer}</pre>`;
+    } else {
+      aiAnswerEl.innerHTML = `❌ 실패: ${json.message}`;
+    }
+  }
 </script>
+
 
 </body>
 </html>
